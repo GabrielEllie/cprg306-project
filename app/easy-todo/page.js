@@ -36,7 +36,7 @@ export default function Page() {
         <main>
             {user ? (
                 <div>
-                    <p><Link href="./protected-main">To Do List</Link></p>
+                    <p><Link href="./components">To Do List</Link></p>
                     <button onClick={handleSignOut}>Sign Out</button>
                 </div>
                 ) : (
