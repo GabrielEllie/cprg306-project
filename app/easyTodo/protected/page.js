@@ -7,6 +7,7 @@ import { TodoList } from './components/todoList';
 import { Navigation } from './components/navigation';
 import tempArray from './temp.json';
 import { Overview } from './overview';
+import ManageTodo from './manage-todo';
 
 export default function Page() {
     const [todoList, settodoList] = useState([]); 
@@ -43,15 +44,15 @@ export default function Page() {
         )
     } else if (currentPage == "manage") {
         page = (
-            <TodoList todoArray={todoListDummy}/>
+            <ManageTodo todoArray={todoListDummy}/>
         )
     }
 
     return (
         <main className="bg-lime-600 w-full h-screen pb-20 overflow-y-auto">
             
-            <Navigation />
-            <Overview todoArray={todoListDummy} />
+            <Navigation setPageFunc={setCurrentPage}/>
+            {page}
             
         </main>
     );

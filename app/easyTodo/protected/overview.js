@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { TodoTask } from './components/todoTask';
+import { TodoList } from './components/todoList';
 
 export function Overview({todoArray}) {
     // variable will be used to get days that are for today
@@ -17,6 +18,8 @@ export function Overview({todoArray}) {
             year: thisDate.getFullYear(),
         };
     };
+    // current date variable
+    const currentDate = getCurrentDate();
 
     const filterTasksByDate = (tasks, date, completed) => {
         return tasks.filter((item) => {
@@ -37,9 +40,8 @@ export function Overview({todoArray}) {
             return varA - varB;
         });
     };
-    
+
     useEffect(() => {
-        const currentDate = getCurrentDate();
         const incompleteTasks = filterTasksByDate(todoArray, currentDate, false);
         const sortedIncompleteTasks = sortTasksByTime(incompleteTasks);
         setTasksToday(sortedIncompleteTasks);
@@ -51,27 +53,16 @@ export function Overview({todoArray}) {
 
     return (
         <div className="flex flex-col items-center text-center w-full">
-            <h1 className="text-3xl text-white bg-blue-500 p-2 rounded-t-3xl mt-10" 
-            >Today's Tasks</h1>
+            <h1 className="text-4xl absolute text-white p-5 underline bg-lime-600 rounded-b-lg border-4">Today's Tasks</h1>
+            <h1 className="text-3xl text-white bg-blue-500 p-2 rounded-t-3xl mt-32" 
+            >In Progress</h1>
             <div className="w-full max-w-3xl bg-blue-500 p-4 m-10 mt-0 rounded-3xl">
-                <ul className="w-full">
-                    {tasksToday.map((item) => (
-                        <li className="flex flex-col items-center" key={item.id}>
-                            <TodoTask todoObj={item} />
-                        </li>
-                    ))}
-                </ul>
+                <TodoList todoArray={tasksToday} dataDate={currentDate} isCompleted={false} />
             </div>
             <h1 className="text-3xl text-white bg-gray-500 p-2 rounded-t-3xl mt-5" 
-            >Completed Tasks</h1>
+            >Completed</h1>
             <div className="w-full max-w-3xl bg-gray-500 p-4 m-10 mt-0 rounded-3xl">
-                <ul className="w-full">
-                    {completedTasks.map((item) => (
-                        <li className="flex flex-col items-center" key={item.id}>
-                            <TodoTask todoObj={item} />
-                        </li>
-                    ))}
-                </ul>
+                <TodoList todoArray={tasksToday} dataDate={currentDate} isCompleted={true} fullInfo={false} />
             </div>
         </div>
     );
