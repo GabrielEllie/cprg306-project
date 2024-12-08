@@ -48,7 +48,7 @@ export default function Page() {
     }
 
     return (
-        <main className="bg-lime-600 w-full h-screen pb-20">
+        <main className="bg-lime-600 w-full h-screen pb-20 overflow-y-auto">
             
             <Navigation />
             <Overview todoArray={todoListDummy} />

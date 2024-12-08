@@ -1,19 +1,26 @@
 import React from 'react';
 
 export function TodoTask({todoObj}) {
-    let {
+    const {
         title,
         date,
         time,
         completed,
     } = todoObj;
+    const { day, month, year } = date;
+    const { hours, minutes } = time;
+    const standardTime = converToStandardTime();
 
-    let { day, month, year } = date;
+    function converToStandardTime() {
+        const period = hours >= 12 ? 'PM' : 'AM';
+        const standardHours = hours % 12 || 12 // This line will make sure that hours cannot be 0
+        const paddedMinutes = minutes.toString().padStart(2, '0');
 
-    let { hours, minutes } = time;
+        return `${standardHours}:${paddedMinutes} ${period}`;
+    }
 
     return(
-        <div className="max-w-2xl bg-lime-800 m-2 p-2 rounded-lg text-white">
+        <div className="max-w-2xl bg-lime-800 m-2 p-4 rounded-lg text-white w-full">
             <div className="flex flex-row justify-between items-center">
                 <h3 className="text-2xl">{title}</h3>
                 <p >{day}/{month}/{year}</p>
@@ -31,7 +38,7 @@ export function TodoTask({todoObj}) {
                         </div>
                     )
                 }
-                <p>{hours}:{minutes}</p>
+                <p>{standardTime}</p>
             </div>
         </div>
     );

@@ -3,7 +3,7 @@ import { TodoTask } from './todoTask';
 
 export function TodoList({todoArray}) {
     return (
-      <div className="w-full h-full p-1 overflow-y-auto">
+      <div className="w-full h-full p-1">
         <ul>
             {todoArray.map((item) => (
                 <li key={item.id}><TodoTask todoObj={item} /></li>
