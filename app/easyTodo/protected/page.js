@@ -12,7 +12,7 @@ import EditTodo from './components/editTodo';
 export default function Page() {
     const [todoList, setTodoList] = useState([]); 
     const { user } = useUserAuth();
-    const [currentPage, setCurrentPage] = useState("manage");
+    const [currentPage, setCurrentPage] = useState("overview");
     
     let todoListHolder;
     async function loadTodo() {

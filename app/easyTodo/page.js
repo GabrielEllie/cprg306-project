@@ -35,8 +35,10 @@ export default function LoginPage() {
     return (
         <main className="flex w-full h-screen justify-center items-center align-middle">
             {user ? (
+                
                 // go to app or sign out
-                <div className="flex max-w-md max-h-md w-full g-full justify-center items-center align-middle">
+                <div className="flex flex-col max-w-md max-h-md w-full g-full justify-center items-center align-middle">
+                    <p>Welcome, {user.email}</p>
                     <Link 
                         className="flex justify-center items-center align-middle bg-green-300 w-full h-16 m-5 border-4 border-green-300 rounded hover:border-blue-600" 
                         href="/easyTodo/protected/">To Do List
