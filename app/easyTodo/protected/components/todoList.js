@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { TodoTask } from './todoTask';
 
-export function TodoList({todoArray, dataDate, isCompleted, fullInfo}) {
+export function TodoList({todoArray, dataDate, isCompleted, fullInfo, toggleEdit, onTodoSelect}) {
   const [todoListTasks, setTodoListTasks] = useState([]);
 
   const sortTasks = (tasks) => {
@@ -49,7 +49,7 @@ export function TodoList({todoArray, dataDate, isCompleted, fullInfo}) {
   useEffect(() => {
     const sortedTasks = sortTasks(todoArray);
     setTodoListTasks(sortedTasks);
-  }, [todoArray, dataDate, isCompleted]);
+  }, [todoArray]);
   
   return (
     <div className="flex flex-col max-w-screen w-full h-full p-1 text-2xl text-black items-center">
@@ -58,7 +58,7 @@ export function TodoList({todoArray, dataDate, isCompleted, fullInfo}) {
             <li key={item.id}
               className="flex w-full items-center"
             >
-              <TodoTask todoObj={item} showFullInfo={fullInfo}/>
+              <TodoTask todoObj={item} showFullInfo={fullInfo} onSelect={onTodoSelect} showEdit={toggleEdit}/>
             </li>
         ))}
       </ul> 

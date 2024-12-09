@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useEffect, useState } from 'react';
-import { TodoTask } from './components/todoTask';
 import { TodoList } from './components/todoList';
 
 export function Overview({todoArray}) {
@@ -62,7 +61,7 @@ export function Overview({todoArray}) {
             <h1 className="text-3xl text-white bg-gray-500 p-2 rounded-t-3xl mt-5" 
             >Completed</h1>
             <div className="w-full max-w-3xl bg-gray-500 p-4 m-10 mt-0 rounded-3xl">
-                <TodoList todoArray={tasksToday} dataDate={currentDate} isCompleted={true} fullInfo={false} />
+                <TodoList todoArray={completedTasks} dataDate={currentDate} isCompleted={true} />
             </div>
         </div>
     );

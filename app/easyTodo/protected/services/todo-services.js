@@ -1,10 +1,10 @@
 import { db } from "../../_utils/firebase";
-import { collection, getDocs, addDoc, query, deleteDoc, updateDoc } from "firebase/firestore";
+import { collection, getDocs, addDoc, query, deleteDoc, updateDoc, doc } from "firebase/firestore";
 
-export async function getTodo(userId, todoId) {
+export async function getTodo(userId) {
     try {
         let todoArray = [];
-        const todoReference = collection(db, 'users', userId, 'todo', todoId);
+        const todoReference = collection(db, 'users', userId, 'todo');
         const q = query(todoReference);
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((docSnap) => {
@@ -21,7 +21,7 @@ export async function getTodo(userId, todoId) {
 
 export async function addTodo(userId, newTodoObj) {
     try {
-        const newTodoRef = collection(db, 'users', userId, 'items');
+        const newTodoRef = collection(db, 'users', userId, 'todo');
         const newTodoPostPromise = await addDoc(newTodoRef, newTodoObj);
         return newTodoPostPromise.id;
     } catch (error) {
@@ -29,11 +29,10 @@ export async function addTodo(userId, newTodoObj) {
     }
 };
 
-export async function deleteTodo(userId, newTodoObj) {
+export async function deleteTodo(userId, todoId) {
     try {
-        const newTodoRef = collection(db, 'users', userId, 'todo');
-        const newTodoPostPromise = await deleteDoc(newTodoRef, newTodoObj);
-        return newTodoPostPromise.id;
+        const newTodoRef = doc(db, 'users', userId, 'todo', todoId);
+        await deleteDoc(newTodoRef);    
     } catch (error) {
         console.error("Problem deleting item", error);
     }
@@ -41,10 +40,9 @@ export async function deleteTodo(userId, newTodoObj) {
 
 export async function updateTodo(userId, todoId, updatedTodo) {
     try {
-        const newTodoRef = collection(db, 'users', userId, 'todo', todoId);
-        const newTodoPostPromise = await addDoc(newTodoRef, updatedTodo);
-        return newTodoPostPromise.id;
+        const newTodoRef = doc(db, 'users', userId, 'todo', todoId);
+        await updateDoc(newTodoRef, updatedTodo);
     } catch (error) {
-        console.error("Problem adding item", error);
+        console.error("Problem updating item", error);
     }
 };

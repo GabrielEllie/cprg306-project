@@ -12,9 +12,10 @@ export function Navigation({setPageFunc}) {
                         onClick={handleOverviewPress}
                     >
                         <img 
-                            src="./images/overview.png" 
+                            // src="./images/overview.png" 
+                            src="https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/dashboard-line-icon.png" 
                             alt="picture of a magnifying glass"
-                            className="h-full w-full mr-2 max-h-10 max-w-10 border-2 " 
+                            className="h-full w-full mr-2 max-h-10 max-w-10" 
                         />  
                         <h3 className="text-3xl">Overview</h3>
                     </button>
@@ -24,9 +25,10 @@ export function Navigation({setPageFunc}) {
                         onClick={handleManagePress}
                     >
                         <img 
-                            src="./images/overview.png" 
+                            // src="./images/overview.png" 
+                            src="https://uxwing.com/wp-content/themes/uxwing/download/tools-equipment-construction/gear-icon.png" 
                             alt="picture of a magnifying glass"
-                            className="h-full w-full mr-2 max-h-10 max-w-10 border-2" 
+                            className="h-full w-full mr-2 max-h-10 max-w-10 " 
                         />  
                         <h3 className="text-3xl">Manage</h3>
                     </button>
